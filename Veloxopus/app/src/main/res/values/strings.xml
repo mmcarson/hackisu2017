@@ -94,6 +94,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="category">Category</string>
     <string name="profile_type">Profile Type</string>
+    <string name="my_profiles">My Profiles</string>
 
     <string-array name="categories">
         <item>Housework</item>

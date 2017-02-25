@@ -58,13 +58,14 @@ public class EditProfileActivity extends AppCompatActivity {
         description.setText(profile.description);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton saveButton = (FloatingActionButton) findViewById(R.id.buttonSave);
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO: Edit profile in database
                 Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                 intent.putExtra("email", profile.email);
+                startActivity(intent);
             }
         });
     }

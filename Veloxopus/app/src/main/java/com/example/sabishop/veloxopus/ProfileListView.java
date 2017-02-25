@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by marissacarson on 2/24/17.
@@ -75,10 +76,11 @@ public class ProfileListView extends LinearLayout {
 
         ImageView chat = new ImageView(context);
         chat.setImageDrawable(getResources().getDrawable(R.drawable.icons_white_speech));
-        cards.setOnClickListener(new OnClickListener() {
+        chat.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO
+                Toast.makeText(getContext(), "This will go to chat", Toast.LENGTH_LONG).show();
             }
         });
         chat.setMaxHeight(screenHeight/6);
@@ -88,7 +90,7 @@ public class ProfileListView extends LinearLayout {
 
         ImageView edit = new ImageView(context);
         edit.setImageDrawable(getResources().getDrawable(R.drawable.icons_white_pencil));
-        cards.setOnClickListener(new OnClickListener() {
+        edit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), EditProfileActivity.class);
@@ -103,7 +105,7 @@ public class ProfileListView extends LinearLayout {
 
         ImageView close = new ImageView(context);
         close.setImageDrawable(getResources().getDrawable(R.drawable.icons_white_close));
-        cards.setOnClickListener(new OnClickListener() {
+        close.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO

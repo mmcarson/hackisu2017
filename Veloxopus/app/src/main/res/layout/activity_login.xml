@@ -46,8 +46,8 @@
                 android:text="@string/login_to_connect_with_jobs_or_workers_fast"/>
 
             <ImageView
-                android:layout_width="821dp"
-                android:layout_height="953dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/veloxopus_fred"
                 />
 
