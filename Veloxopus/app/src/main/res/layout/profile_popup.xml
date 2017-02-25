@@ -21,23 +21,33 @@
             android:text="Are you sure you want to delete this profile?"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/deleteProfileQuestion"
             android:textSize="30sp"
             android:textAlignment="center"
             tools:textColor="@color/colorWhite" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="96dp" />
+            android:layout_height="97dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/colorMediumPurple"/>
 
         <TextView
             android:text="<profile>"
             android:layout_width="match_parent"
-            android:id="@+id/textView3"
+            android:id="@+id/profileName"
             android:textColor="@color/colorWhite"
             android:layout_height="50dp"
             android:gravity="center_vertical|center_horizontal"
             android:textSize="30sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/colorMediumPurple"/>
 
         <Space
             android:layout_width="match_parent"
@@ -51,7 +61,7 @@
             <Button
                 android:text="Yes"
                 android:layout_height="80dp"
-                android:id="@+id/button4"
+                android:id="@+id/yesButton"
                 android:layout_weight="0.76"
                 android:background="@color/colorMediumPurple"
                 android:textColor="@color/colorWhite"
@@ -61,7 +71,7 @@
 
             <Button
                 android:text="No"
-                android:id="@+id/button5"
+                android:id="@+id/noButton"
                 android:layout_weight="0.69"
                 android:layout_height="80dp"
                 android:background="@color/colorMediumPurple"
