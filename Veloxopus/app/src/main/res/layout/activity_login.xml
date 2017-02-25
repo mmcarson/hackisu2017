@@ -37,17 +37,17 @@
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:textSize="20pt"
-                android:text="Welcome to Veloxopus!"/>
+                android:text="@string/welcome_to_veloxopus"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorLightPurple"
-                android:text="Login to connect with jobs or workers, fast."/>
+                android:text="@string/login_to_connect_with_jobs_or_workers_fast"/>
 
             <ImageView
-                android:layout_width="821px"
-                android:layout_height="953px"
+                android:layout_width="821dp"
+                android:layout_height="953dp"
                 android:src="@mipmap/veloxopus_fred"
                 />
 

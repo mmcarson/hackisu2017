@@ -24,6 +24,7 @@ public class ProfileListView extends LinearLayout {
     protected Context context;
 
     int screenWidth, screenHeight;
+    static int PADDING_HORIZONTAL = 20, PADDING_VERTICAL = 0, PADDING_INIT = 40;
     Profile profile;
 
     public ProfileListView(Context context, Profile profile) {
@@ -52,7 +53,7 @@ public class ProfileListView extends LinearLayout {
         TextView nameView = new TextView(context);
         nameView.setTextColor(Color.WHITE);
         nameView.setTypeface(Typeface.create("HELVETICA", Typeface.BOLD));
-        nameView.setText(profile.name);
+        nameView.setText(profile.type + ": " + profile.name);
         this.addView(nameView);
 
         // icons
@@ -66,6 +67,7 @@ public class ProfileListView extends LinearLayout {
         });
         cards.setMaxHeight(screenHeight/6);
         cards.setMaxWidth(screenHeight/6);
+        cards.setPadding(PADDING_INIT, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
         addView(cards);
 
         ImageView chat = new ImageView(context);
@@ -78,6 +80,7 @@ public class ProfileListView extends LinearLayout {
         });
         chat.setMaxHeight(screenHeight/6);
         chat.setMaxWidth(screenHeight/6);
+        chat.setPadding(PADDING_HORIZONTAL, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
         addView(chat);
 
         ImageView edit = new ImageView(context);
@@ -90,6 +93,7 @@ public class ProfileListView extends LinearLayout {
         });
         edit.setMaxHeight(screenHeight/6);
         edit.setMaxWidth(screenHeight/6);
+        edit.setPadding(PADDING_HORIZONTAL, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
         addView(edit);
 
         ImageView close = new ImageView(context);
@@ -102,6 +106,7 @@ public class ProfileListView extends LinearLayout {
         });
         close.setMaxHeight(screenHeight/6);
         close.setMaxWidth(screenHeight/6);
+        close.setPadding(PADDING_HORIZONTAL, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
         addView(close);
     }
 }
