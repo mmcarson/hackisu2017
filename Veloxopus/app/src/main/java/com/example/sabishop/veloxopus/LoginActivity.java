@@ -31,6 +31,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        MySQLDatabase db = null;
+        try {
+            db = new MySQLDatabase();
+            try {
+                db.RemoveUser("medavenport@coe.edu");
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(e.getMessage());
+            }
+            db.AddUser("medavenport@coe.edu", "Marc", "password");
+            System.out.println("Successfully added and removed user!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+
+
 
         //View decorView = getWindow().getDecorView();
         // Hide the status bar.
