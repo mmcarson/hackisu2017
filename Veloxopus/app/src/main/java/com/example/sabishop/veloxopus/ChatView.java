@@ -1,7 +1,6 @@
 package com.example.sabishop.veloxopus;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Display;
@@ -10,33 +9,39 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * Created by marissacarson on 2/25/17.
  */
 
 public class ChatView extends LinearLayout {
-    private Chat chat;
+    private ChatLog chatLog;
     private Profile self;
     private RelativeLayout.LayoutParams lp;
     private Context context;
     int screenWidth, screenHeight;
-    public ChatView(Context context, Chat chat, Profile self) {
+    public ChatView(Context context, ChatLog chatLog, Profile self) {
         super(context);
-        this.chat = chat;
+        this.chatLog = chatLog;
         this.self = self;
         setOrientation(HORIZONTAL);
         this.context = context;
 
         lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        if (self.profileID == chat.fromID) {
+        if (self.profileID == chatLog.fromID) {
             formatFromMe();
         }
         else {
             formatToMe();
         }
         format();
+
+        TextView messageView = new TextView(context);
+        messageView.setText(chatLog.message);
+        messageView.setTextColor(getResources().getColor(R.color.colorWhite));
+        addView(messageView);
     }
 
     private void format() {
@@ -48,7 +53,7 @@ public class ChatView extends LinearLayout {
         display.getSize(size);
         screenWidth = size.x;
         screenHeight = size.y;
-        lp.height = screenHeight/6;
+        //lp.height = screenHeight/6;
         lp.width = screenWidth;
     }
 
@@ -58,7 +63,7 @@ public class ChatView extends LinearLayout {
     }
 
     private void formatFromMe() {
-        setBackground(new ColorDrawable(getResources().getColor(R.color.colorMediumPurple));
+        setBackground(new ColorDrawable(getResources().getColor(R.color.colorMediumPurple)));
         lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
     }
 }
