@@ -35,13 +35,14 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
+                android:textSize="20pt"
                 android:text="Welcome to Veloxopus!"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorLightPurple"
-                android:text="Login to find jobs to do or people to do work for you, fast."/>
+                android:text="Login to connect with jobs or workers, fast."/>
 
             <ImageView
                 android:layout_width="821px"
