@@ -30,10 +30,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <ImageView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:text="Welcome to Veloxopus!"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLightPurple"
+                android:text="Login to find jobs to do or people to do work for you, fast."/>
+
+            <ImageView
+                android:layout_width="821px"
+                android:layout_height="953px"
                 android:src="@mipmap/veloxopus_fred"
                 />
 
@@ -48,7 +60,7 @@
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:background="@color/colorLightPurple"
+                    android:background="@color/colorWhite"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -67,7 +79,7 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:background="@color/colorLightPurple"
+                    android:background="@color/colorWhite"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
