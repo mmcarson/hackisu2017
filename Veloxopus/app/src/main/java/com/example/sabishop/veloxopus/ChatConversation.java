@@ -8,8 +8,40 @@ import java.util.SortedMap;
  */
 
 public class ChatConversation {
-    public long chatID, workerID, jobID;
-    public ArrayList<ChatLog> chatList;
+    private long chatID, workerID, jobID;
+    private ArrayList<ChatLog> chatList;
+
+    public long getChatID() {
+        return chatID;
+    }
+
+    public void setChatID(long chatID) {
+        this.chatID = chatID;
+    }
+
+    public long getWorkerID() {
+        return workerID;
+    }
+
+    public void setWorkerID(long workerID) {
+        this.workerID = workerID;
+    }
+
+    public long getJobID() {
+        return jobID;
+    }
+
+    public void setJobID(long jobID) {
+        this.jobID = jobID;
+    }
+
+    public ArrayList<ChatLog> getChatList() {
+        return chatList;
+    }
+
+    public void addToChatList(ChatLog chat){
+        chatList.add(chat);
+    }
 
     public ChatConversation(long chatID, long workerID, long jobID, ArrayList<ChatLog> chatList) {
         this.chatID = chatID;
