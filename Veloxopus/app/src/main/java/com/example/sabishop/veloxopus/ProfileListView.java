@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ import android.widget.TextView;
  * Created by marissacarson on 2/24/17.
  */
 
-public class ProfileListView extends RelativeLayout {
+public class ProfileListView extends LinearLayout {
     protected Context context;
 
     int screenWidth, screenHeight;
@@ -27,6 +28,7 @@ public class ProfileListView extends RelativeLayout {
 
     public ProfileListView(Context context, Profile profile) {
         super(context);
+        setOrientation(HORIZONTAL);
         this.context = context;
         this.profile = profile;
 
