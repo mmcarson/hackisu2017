@@ -42,8 +42,8 @@ public class ProfilesActivity extends AppCompatActivity {
         });
 
         // test
-        Profile profile = new Profile("mmcarson@gmail.com", "Pet Sitter", "Experienced with small and large dogs", "Child/Pet Care", "Worker", 14);
-        ProfileListView profileListView = new ProfileListView(getApplicationContext(), profile);
+        Profile profile = new Profile("mmcarson@gmail.com", "Pet Sitter", "Experienced with small and large dogs", "Child/Pet Care", "Worker", 0);
+        ProfileListView profileListView = new ProfileListView(getApplicationContext(), profile, this);
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.profiles_list);
         linearLayout.addView(profileListView);
     }

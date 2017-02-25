@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class EditProfileActivity extends AppCompatActivity {
         long profileID;
         profileID = getIntent().getLongExtra("profileID", 0);
         if (profileID == 0){
-            profile = new Profile("mmcarson@gmail.com", "Pet Sitter", "Experienced with small and large dogs", "Child/Pet Care", "Worker", 14);
+            profile = new Profile("mmcarson@gmail.com", "Pet Sitter", "Experienced with small and large dogs", "Child/Pet Care", "Worker", 0);
         }
 
         //fill spinners
@@ -35,8 +36,9 @@ public class EditProfileActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         categorySpinner.setAdapter(adapter);
+        int pos = adapter.getPosition(profile.category);
+        categorySpinner.setSelection(pos);
 
-        //
 
         Spinner typeSpinner = (Spinner)findViewById(R.id.spinnerType);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -46,6 +48,14 @@ public class EditProfileActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         typeSpinner.setAdapter(adapter);
+        pos = adapter.getPosition(profile.type);
+        typeSpinner.setSelection(pos);
+
+        //fill EditTexts
+        EditText name = (EditText)findViewById(R.id.editTextName);
+        name.setText(profile.name);
+        EditText description = (EditText)findViewById(R.id.editTextDescription);
+        description.setText(profile.description);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

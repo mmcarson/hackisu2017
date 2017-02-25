@@ -1,6 +1,8 @@
 package com.example.sabishop.veloxopus;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -26,8 +28,9 @@ public class ProfileListView extends LinearLayout {
     int screenWidth, screenHeight;
     static int PADDING_HORIZONTAL = 20, PADDING_VERTICAL = 0, PADDING_INIT = 40;
     Profile profile;
+    Activity parent;
 
-    public ProfileListView(Context context, Profile profile) {
+    public ProfileListView(Context context, final Profile profile, final Activity parent) {
         super(context);
         setOrientation(HORIZONTAL);
         this.context = context;
@@ -88,7 +91,9 @@ public class ProfileListView extends LinearLayout {
         cards.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Intent intent = new Intent(getContext(), EditProfileActivity.class);
+                intent.putExtra("profileID", profile.profileID);
+                parent.startActivity(intent);
             }
         });
         edit.setMaxHeight(screenHeight/6);
