@@ -7,4 +7,12 @@ package com.example.sabishop.veloxopus;
 public class Profile {
     public String email, name, description, category, type;
     long profileID;
+    public Profile(String email, String name, String description, String category, String type, long profileID){
+        this.email = email;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.type = type;
+        this.profileID = profileID;
+    }
 }

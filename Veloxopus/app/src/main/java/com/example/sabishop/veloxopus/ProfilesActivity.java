@@ -1,11 +1,13 @@
 package com.example.sabishop.veloxopus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 
 public class ProfilesActivity extends AppCompatActivity {
 
@@ -15,6 +17,7 @@ public class ProfilesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profiles);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        String email = getIntent().getStringExtra("email");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -24,6 +27,12 @@ public class ProfilesActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // test
+        Profile profile = new Profile("mmcarson@gmail.com", "Pet Sitter", "Experienced with small and large dogs", "Child/Pet Care", "Worker", 14);
+        ProfileListView profileListView = new ProfileListView(getApplicationContext(), profile);
+        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.profiles_list);
+        linearLayout.addView(profileListView);
     }
 
 }
