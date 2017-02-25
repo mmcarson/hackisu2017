@@ -35,7 +35,14 @@
             android:name=".EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity
+            android:name=".ChatActivity"
+            android:label="Chat"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MatchesActivity"
+            android:label="Matches"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
