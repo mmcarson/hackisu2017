@@ -96,6 +96,7 @@
     <string name="profile_type">Profile Type</string>
     <string name="my_profiles">My Profiles</string>
     <string name="enter_message_here">Enter message here</string>
+    <string name="my_matches">My Matches</string>
 
     <string-array name="categories">
         <item>Housework</item>

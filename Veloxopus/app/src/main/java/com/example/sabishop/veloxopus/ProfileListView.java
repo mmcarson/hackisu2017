@@ -80,7 +80,10 @@ public class ProfileListView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 //TODO
-                Toast.makeText(getContext(), "This will go to chat", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), "This will go to chat", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), MatchesActivity.class);
+                intent.putExtra("profileID", profile.profileID);
+                parent.startActivity(intent);
             }
         });
         chat.setMaxHeight(screenHeight/6);

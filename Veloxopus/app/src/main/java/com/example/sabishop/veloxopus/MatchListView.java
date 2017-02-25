@@ -70,7 +70,8 @@ public class MatchListView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 //TODO
-                Toast.makeText(getContext(), "This will go to chat", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), ChatActivity.class);
+                parent.startActivity(intent);
             }
         });
         chat.setMaxHeight(screenHeight/6);
