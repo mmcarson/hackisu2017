@@ -31,6 +31,13 @@
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:textSize="20pt"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorLightPurple"
+            android:gravity="center_horizontal"
+            android:text="@string/add_worker_or_job_profiles_to_match_with_others"/>
     </LinearLayout>
 
 
