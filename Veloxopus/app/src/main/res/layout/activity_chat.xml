@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorWhite"
         android:textStyle="bold"
-        android:textSize="16pt"
+        android:textSize="12pt"
         android:id="@+id/profile_names"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
