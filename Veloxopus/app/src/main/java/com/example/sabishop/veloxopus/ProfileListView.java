@@ -27,7 +27,7 @@ public class ProfileListView extends LinearLayout {
     protected Context context;
 
     int screenWidth, screenHeight;
-    static int PADDING_HORIZONTAL = 20, PADDING_VERTICAL = 0, PADDING_INIT = 40;
+    static int PADDING_HORIZONTAL = 10, PADDING_VERTICAL = 10, PADDING_INIT = 20;
     Profile profile;
     Activity parent;
 
@@ -53,7 +53,7 @@ public class ProfileListView extends LinearLayout {
 
         setGravity(Gravity.CENTER_VERTICAL);
 
-        setPadding(screenWidth / 7, screenWidth / 12, screenWidth / 12, screenWidth / 12);
+        setPadding(PADDING_HORIZONTAL,PADDING_VERTICAL,PADDING_HORIZONTAL,PADDING_VERTICAL);
         lp.height = screenHeight/6;
         lp.width = screenWidth;
         TextView nameView = new TextView(context);
@@ -70,6 +70,7 @@ public class ProfileListView extends LinearLayout {
             public void onClick(View v) {
                 //TODO
                 Intent intent = new Intent(context, CardActivity.class);
+                intent.putExtra("profileID", profile.profileID);
                 parent.startActivity(intent);
             }
         });
