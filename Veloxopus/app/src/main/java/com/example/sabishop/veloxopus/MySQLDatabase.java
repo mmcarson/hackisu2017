@@ -65,6 +65,21 @@ public class MySQLDatabase {
         CloseDBConnection();
     }
 
+    public void UpdateProfile(long PID , String new_email , String new_title , String new_category , String new_description,
+                              String new_type) throws Exception {
+        OpenDBConnection();
+
+        String sql = "UPDATE PROFILE SET Email = '" + new_email + "' , Title = '" + new_title + "' , Category = '" +
+                new_category + "' , Description = '" + new_description + "' , Type = '" + new_type + "'" +
+                " WHERE PID = " + Long.toString(PID) + ";";
+
+        if (1 != stmt.executeUpdate(sql)) {
+            throw new Exception("Failed to update Profile for PID " + Long.toString(PID));
+        }
+
+        CloseDBConnection();
+    }
+
     public void AddProfile(String email , String title , String category , String description , String type) throws Exception {
         OpenDBConnection();
         String sql = "INSERT INTO PROFILE VALUES(NULL , '" + email + "' , '" + title + "' , '" + category + "' , '" +
@@ -120,4 +135,7 @@ public class MySQLDatabase {
 
         return p;
     }
+
+
+
 }
