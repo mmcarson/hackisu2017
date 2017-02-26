@@ -91,6 +91,23 @@ public class MySQLDatabase {
         CloseDBConnection();
     }
 
+    public ArrayList<Profile> GetAllProfiles() throws SQLException {
+        ArrayList<Profile> plist = new ArrayList<Profile>();
+
+        OpenDBConnection();
+
+        String sql = "SELECT * FROM PROFILE;";
+        results = stmt.executeQuery(sql);
+
+        while (results.next()) {
+            plist.add(GetProfileFromResults(results));
+        }
+
+        CloseDBConnection();
+
+        return plist;
+    }
+
     public ArrayList<Profile> GetProfiles(String user_email) throws SQLException {
         OpenDBConnection();
 
