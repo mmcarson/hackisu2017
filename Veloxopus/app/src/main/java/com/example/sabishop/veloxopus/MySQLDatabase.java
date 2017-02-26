@@ -76,7 +76,7 @@ public class MySQLDatabase {
         CloseDBConnection();
     }
 
-    public ArrayList<Profile> GetMatchingProfiles(String user_email) throws SQLException {
+    public ArrayList<Profile> GetProfiles(String user_email) throws SQLException {
         OpenDBConnection();
 
         String sql = "SELECT * FROM PROFILE WHERE email = '" + user_email + "';";
@@ -85,18 +85,39 @@ public class MySQLDatabase {
         ArrayList<Profile> profiles = new ArrayList<Profile>();
 
         while (results.next()) {
-            Profile p = new Profile(user_email);
-            p.profileID = results.getLong(1);
-            p.name = results.getString(3);
-            p.category = results.getString(4);
-            p.description = results.getString(5);
-            p.type = results.getString(6);
-
-            profiles.add(p);
+            profiles.add(GetProfileFromResults(results));
         }
 
         CloseDBConnection();
 
         return profiles;
+    }
+
+    protected Profile GetProfileFromResults(ResultSet results) throws SQLException {
+        Profile p = new Profile("");
+        p.profileID = results.getLong(1);
+        p.email = results.getString(2);
+        p.name = results.getString(3);
+        p.category = results.getString(4);
+        p.description = results.getString(5);
+        p.type = results.getString(6);
+        return p;
+    }
+
+    public Profile GetProfile(long PID) throws Exception {
+        OpenDBConnection();
+
+        String sql = "SELECT * FROM PROFILE WHERE PID = " + Long.toString(PID) + ";";
+        results = stmt.executeQuery(sql);
+
+        if (!results.next()) {
+            throw new Exception("Failed to find PID " + Long.toString(PID) + " in PROFILE table!");
+        }
+
+        Profile p = GetProfileFromResults(results);
+
+        CloseDBConnection();
+
+        return p;
     }
 }
