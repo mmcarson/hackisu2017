@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class MatchesActivity extends AppCompatActivity {
 
     @Override
@@ -26,12 +28,20 @@ public class MatchesActivity extends AppCompatActivity {
         });
         fab.hide();
 
-        // test
-        Profile profile = new Profile("contactlaurac@gmail.com", "Pet Sitter", "Need sitter for Shih Tzu age 6 and Lhasa Apso age 9", "Child/Pet Care", "Job", 1);
-        //ProfileListView profileListView = new ProfileListView(getApplicationContext(), profile, this);
-        MatchListView matchListView = new MatchListView(getApplicationContext(), profile, this);
+        ArrayList<Profile> profiles = new ArrayList<>();
+
+        //TODO: fill array list with matches
+
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.profiles_list);
-        linearLayout.addView(matchListView);
+
+        for (int i=0; i<profiles.size(); i++) {
+            MatchListView matchListView = new MatchListView(getApplicationContext(), profiles.get(i), this);
+            linearLayout.addView(matchListView);
+        }
+
+        // test
+        //Profile profile = new Profile("contactlaurac@gmail.com", "Pet Sitter", "Need sitter for Shih Tzu age 6 and Lhasa Apso age 9", "Child/Pet Care", "Job", 1);
+        //ProfileListView profileListView = new ProfileListView(getApplicationContext(), profile, this);
     }
 
 }
