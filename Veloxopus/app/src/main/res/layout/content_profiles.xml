@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorLightPurple"
             android:gravity="center_horizontal"
+            android:padding="10dp"
             android:text="@string/add_worker_or_job_profiles_to_match_with_others"/>
     </LinearLayout>
 

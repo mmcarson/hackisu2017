@@ -49,7 +49,7 @@ public class MatchListView extends LinearLayout {
 
         setGravity(Gravity.CENTER_VERTICAL);
 
-        setPadding(screenWidth / 7, screenWidth / 12, screenWidth / 12, screenWidth / 12);
+        //setPadding(screenWidth / 7, screenWidth / 12, screenWidth / 12, screenWidth / 12);
         lp.height = screenHeight/6;
         lp.width = screenWidth;
         TextView nameView = new TextView(context);
