@@ -281,11 +281,11 @@ public class MySQLDatabase {
         String column = "";
         int colnum = -1;
         if (job_type.equals("Job")) {
-            column = "WPID";
+            column = "EPID";
             colnum = 2;
         }
         else {
-            column = "EPID";
+            column = "WPID";
             colnum = 3;
         }
 
