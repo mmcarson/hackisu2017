@@ -40,7 +40,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, OnClickListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -127,6 +127,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        Button registerButton = (Button)findViewById(R.id.email_register_button);
+        registerButton.setOnClickListener(this);
     }
 
     private void populateAutoComplete() {
@@ -315,6 +318,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == findViewById(R.id.email_register_button)){
+            Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+            intent.putExtra("email", mEmailView.getText().toString());
+            startActivity(intent);
+        }
     }
 
 

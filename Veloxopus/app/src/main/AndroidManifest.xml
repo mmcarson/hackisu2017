@@ -47,7 +47,8 @@
             android:name=".CardActivity"
             android:label="@string/title_activity_card"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".DeleteProfileActivity"></activity>
     </application>
 
 </manifest>

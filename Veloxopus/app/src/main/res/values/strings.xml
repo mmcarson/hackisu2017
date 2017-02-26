@@ -118,4 +118,5 @@
     <string name="registration">Registration</string>
     <string name="what_s_your_first_name">What\'s your first name?</string>
     <string name="register">Register</string>
+    <string name="are_you_sure_you_want_to_delete_this_profile">Are you sure you want to delete this profile?</string>
 </resources>
