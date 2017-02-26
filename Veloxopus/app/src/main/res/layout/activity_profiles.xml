@@ -36,6 +36,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_add"
-        android:background="@color/colorMediumPurple"/>
+        android:background="@color/colorMediumPurple"
+        app:backgroundTint="@android:color/holo_blue_bright" />
 
 </android.support.design.widget.CoordinatorLayout>
