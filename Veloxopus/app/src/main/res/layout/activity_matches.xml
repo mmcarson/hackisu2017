@@ -37,6 +37,6 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/icons_white_cards"
         android:background="@color/colorMediumPurple"
-        />
+        app:backgroundTint="@android:color/holo_blue_bright" />
 
 </android.support.design.widget.CoordinatorLayout>
