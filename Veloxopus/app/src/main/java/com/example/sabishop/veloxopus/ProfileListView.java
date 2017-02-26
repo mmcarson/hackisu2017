@@ -33,9 +33,11 @@ public class ProfileListView extends LinearLayout {
 
     public ProfileListView(Context context, final Profile profile, final Activity parent) {
         super(context);
-        setOrientation(HORIZONTAL);
+        setOrientation(VERTICAL);
         this.context = context;
         this.profile = profile;
+        LinearLayout innerLayout = new LinearLayout(getContext());
+        innerLayout.setGravity(Gravity.RIGHT);
 
         //get screen size
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -74,7 +76,7 @@ public class ProfileListView extends LinearLayout {
         cards.setMaxHeight(screenHeight/6);
         cards.setMaxWidth(screenHeight/6);
         cards.setPadding(PADDING_INIT, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
-        addView(cards);
+        innerLayout.addView(cards);
 
         ImageView chat = new ImageView(context);
         chat.setImageDrawable(getResources().getDrawable(R.drawable.icons_white_speech));
@@ -91,7 +93,7 @@ public class ProfileListView extends LinearLayout {
         chat.setMaxHeight(screenHeight/6);
         chat.setMaxWidth(screenHeight/6);
         chat.setPadding(PADDING_HORIZONTAL, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
-        addView(chat);
+        innerLayout.addView(chat);
 
         ImageView edit = new ImageView(context);
         edit.setImageDrawable(getResources().getDrawable(R.drawable.icons_white_pencil));
@@ -106,7 +108,7 @@ public class ProfileListView extends LinearLayout {
         edit.setMaxHeight(screenHeight/6);
         edit.setMaxWidth(screenHeight/6);
         edit.setPadding(PADDING_HORIZONTAL, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
-        addView(edit);
+        innerLayout.addView(edit);
 
         ImageView close = new ImageView(context);
         close.setImageDrawable(getResources().getDrawable(R.drawable.icons_white_close));
@@ -122,6 +124,8 @@ public class ProfileListView extends LinearLayout {
         close.setMaxHeight(screenHeight/6);
         close.setMaxWidth(screenHeight/6);
         close.setPadding(PADDING_HORIZONTAL, PADDING_VERTICAL, PADDING_HORIZONTAL, PADDING_VERTICAL);
-        addView(close);
+        innerLayout.addView(close);
+
+        addView(innerLayout);
     }
 }

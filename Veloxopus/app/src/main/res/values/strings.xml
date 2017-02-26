@@ -109,8 +109,8 @@
         <item>Other</item>
     </string-array>
     <string-array name="types">
-        <item>I am a worker</item>
-        <item>I need a worker</item>
+        <item>Worker</item>
+        <item>Job</item>
     </string-array>
     <string name="title_activity_card">CardActivity</string>
     <string name="add_worker_or_job_profiles_to_match_with_others">Add worker or job profiles to match with others.</string>
