@@ -114,4 +114,5 @@
     </string-array>
     <string name="title_activity_card">CardActivity</string>
     <string name="add_worker_or_job_profiles_to_match_with_others">Add worker or job profiles to match with others.</string>
+    <string name="profile"><![CDATA[<profile>]]></string>
 </resources>
