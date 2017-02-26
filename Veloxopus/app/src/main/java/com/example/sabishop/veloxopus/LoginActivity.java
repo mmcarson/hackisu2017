@@ -239,12 +239,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
 //            // Show a progress spinner, and kick off a background task to
 //            // perform the user login attempt.
-//            showProgress(true);
-//            mAuthTask = new UserLoginTask(email, password);
-//            mAuthTask.execute((Void) null);
+            showProgress(true);
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute((Void) null);
 
-            MySQLDatabase db = new MySQLDatabase();
-            boolean valid = db.VerifyUser(email, password);
+            //MySQLDatabase db = new MySQLDatabase();
+            //boolean valid = db.VerifyUser(email, password);
+            boolean valid = true;
 
             if (valid == true)
             {
