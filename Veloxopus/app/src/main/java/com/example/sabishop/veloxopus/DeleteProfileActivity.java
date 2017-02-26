@@ -21,7 +21,6 @@ public class DeleteProfileActivity extends AppCompatActivity implements View.OnC
         email = getIntent().getStringExtra("email");
         profileID = getIntent().getLongExtra("profileID",0);
 
-        //TODO: fill with info from database
         try {
             MySQLDatabase database = new MySQLDatabase();
             profile = database.GetProfile(profileID);
