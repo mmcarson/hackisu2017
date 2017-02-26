@@ -281,9 +281,9 @@ public class MySQLDatabase {
         String sql = "SELECT * FROM ACCEPTED WHERE WAccept = 1 AND EAccept = 1";
         results = stmt.executeQuery(sql);
 
-        int column = 3;
+        int column = 2;
         if (job_type.equals("Worker")) {
-            column = 2;
+            column = 3;
         }
         while (results.next()) {
             long PID = results.getLong(column);
