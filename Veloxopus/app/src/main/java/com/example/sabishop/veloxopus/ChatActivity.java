@@ -2,12 +2,15 @@ package com.example.sabishop.veloxopus;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Profile me, other;
     private long chatID;
@@ -27,14 +30,10 @@ public class ChatActivity extends AppCompatActivity {
             conversation.addToChatList(new ChatLog(chatID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
         }
         else {
-            // TODO
+            // TODO: get chats from database
         }
 
-        //fill layouts
-        LinearLayout chatLayout = (LinearLayout)findViewById(R.id.chatLayout);
-        for (int i=0; i<conversation.getChatList().size(); i++){
-            chatLayout.addView(new ChatView(getApplicationContext(), conversation.getChatList().get(i), me));
-        }
+        fillLayout();
 
         String middleOfTitle;
         if (me.type == "Job"){
@@ -47,5 +46,31 @@ public class ChatActivity extends AppCompatActivity {
         TextView titleView = (TextView)findViewById(R.id.profile_names);
         titleView.setText(me.name + middleOfTitle + other.name);
 
+        Button sendButton = (Button)findViewById(R.id.buttonSend);
+        sendButton.setOnClickListener(this);
+    }
+
+    private void fillLayout() {
+        //fill layouts
+        LinearLayout chatLayout = (LinearLayout)findViewById(R.id.chatLayout);
+        chatLayout.removeAllViews();
+        for (int i=0; i<conversation.getChatList().size(); i++){
+            chatLayout.addView(new ChatView(getApplicationContext(), conversation.getChatList().get(i), me));
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if (v == findViewById(R.id.buttonSend)){
+            EditText editText = (EditText)findViewById(R.id.editText);
+            String message = editText.getText().toString();
+            if (message != "") {
+                conversation.addToChatList(new ChatLog(chatID, other.profileID, me.profileID, 0, message));
+                //TODO: add chat to database
+                fillLayout();
+                editText.setText("");
+            }
+        }
     }
 }

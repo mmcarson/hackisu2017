@@ -60,7 +60,7 @@ public class MatchListView extends LinearLayout {
         nameView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                // TODO: go to a detailed view of the matched profile
             }
         });
 
@@ -69,7 +69,7 @@ public class MatchListView extends LinearLayout {
         chat.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                //TODO: find chatID by both profileIDs, pass through the intent to chat
                 Intent intent = new Intent(getContext(), ChatActivity.class);
                 parent.startActivity(intent);
             }
@@ -84,7 +84,7 @@ public class MatchListView extends LinearLayout {
         close.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                //TODO: Make the popup happen for closing a profile
             }
         });
         close.setMaxHeight(screenHeight/6);

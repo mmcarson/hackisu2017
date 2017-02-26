@@ -38,6 +38,16 @@ public class ChatView extends LinearLayout {
         }
         format();
 
+        TextView whoView = new TextView(context);
+        if (chatLog.fromID == self.profileID){
+            whoView.setText("Me: ");
+        }
+        else {
+            whoView.setText("Them: ");
+        }
+        whoView.setTextColor(getResources().getColor(R.color.colorLightPurple));
+        addView(whoView);
+
         TextView messageView = new TextView(context);
         messageView.setText(chatLog.message);
         messageView.setTextColor(getResources().getColor(R.color.colorWhite));
@@ -55,16 +65,18 @@ public class ChatView extends LinearLayout {
         screenHeight = size.y;
         //lp.height = screenHeight/6;
         lp.width = screenWidth;
-        setPadding(10,10,10,10);
+        setPadding(20,20,20,20);
     }
 
     private void formatToMe() {
         setBackground(new ColorDrawable(getResources().getColor(R.color.colorDarkPurple)));
         lp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+        setGravity(Gravity.LEFT);
     }
 
     private void formatFromMe() {
         setBackground(new ColorDrawable(getResources().getColor(R.color.colorMediumPurple)));
         lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        setGravity(Gravity.RIGHT);
     }
 }

@@ -15,4 +15,7 @@ public class Profile {
         this.type = type;
         this.profileID = profileID;
     }
+    public Profile(String email){
+        this.email = email;
+    }
 }
