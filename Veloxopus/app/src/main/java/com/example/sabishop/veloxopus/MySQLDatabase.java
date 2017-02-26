@@ -27,9 +27,16 @@ public class MySQLDatabase {
 
     protected void OpenDBConnection() throws SQLException {
         /// jdbc:mysql://hostname:port/databasename
-        connection = DriverManager.getConnection("jdbc:mysql://107.180.47.119:3306/QuickJobDatabase",
-                "QuickJobUser", "QJUuosibe066#");
+///        connection = DriverManager.getConnection("jdbc:mysql://107.180.47.119:3306/QuickJobDatabase",
+///                "QuickJobUser", "QJUuosibe066#");
+
+        connection = DriverManager.getConnection(
+                "jdbc:mysql://107.180.47.119:3306/QuickJobDatabase?useUnicode=true&characterEncoding=utf-8" ,
+                "QuickJobUser" , "QJUuosibe066#");
+
+        System.out.println("Connected to database.");
         stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        System.out.println("Created statement.");
     }
     protected void CloseDBConnection() throws SQLException {
         connection.close();
