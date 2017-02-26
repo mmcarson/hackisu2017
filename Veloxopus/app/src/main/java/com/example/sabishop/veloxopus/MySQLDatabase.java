@@ -248,5 +248,24 @@ public class MySQLDatabase {
         return ret;
     }
 
+    public long GetMatchingJobId(long WorkerID , long EmployeeID) throws SQLException {
 
+        long ret = -1;
+
+        OpenDBConnection();
+
+        String sql = "SELECT JID FROM ACCEPTED WHERE WPID = " +
+                      Long.toString(WorkerID) + " AND EPID = " + Long.toString(EmployeeID) + ";";
+
+        results = stmt.executeQuery(sql);
+
+        /* TODO : Check for more than one result, which would indicate an error */
+        if (results.next()) {
+            ret = results.getLong(1);
+        }
+
+        CloseDBConnection();
+
+        return ret;
+    }
 }
