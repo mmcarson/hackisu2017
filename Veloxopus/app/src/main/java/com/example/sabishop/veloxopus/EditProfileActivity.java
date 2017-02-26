@@ -77,17 +77,21 @@ public class EditProfileActivity extends AppCompatActivity {
                     profile.description = ((EditText)findViewById(R.id.editTextDescription)).getText().toString();
                     profile.name = ((EditText)findViewById(R.id.editTextName)).getText().toString();
                     if (isNew){
+                        //MySQLDatabase database = new MySQLDatabase();
                         try {
-                            //MySQLDatabase database = new MySQLDatabase();
                             database.AddProfile(profile.email, profile.name, profile.category, profile.description, profile.type);
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+
                     }
                     else{
                         //TODO: Edit profile in database
+                        try {
+                            database.UpdateProfile(profileID, profile.email, profile.name, profile.category, profile.description, profile.type);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                     Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                     intent.putExtra("email", profile.email);
