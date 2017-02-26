@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MatchesActivity extends AppCompatActivity {
@@ -31,6 +32,14 @@ public class MatchesActivity extends AppCompatActivity {
         ArrayList<Profile> profiles = new ArrayList<>();
 
         //TODO: fill array list with matches
+        try {
+            MySQLDatabase database = new MySQLDatabase();
+            profiles = database.GetAllProfiles();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.profiles_list);
 
