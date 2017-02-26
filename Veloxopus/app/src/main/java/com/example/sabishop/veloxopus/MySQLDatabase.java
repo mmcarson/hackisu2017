@@ -275,13 +275,22 @@ public class MySQLDatabase {
 
         OpenDBConnection();
 
-        String sql = "SELECT * FROM PROFILE WHERE PID = " + Long.toString(ProfileID) + ";";
-
+        /// Fetch all jobs that have been accepted
+        String sql = "SELECT * FROM ACCEPTED WHERE WAccept = 1 AND EAccept = 1";
         results = stmt.executeQuery(sql);
 
+        int column = 3;
+        if (job_type.equals("Worker")) {
+            column = 2;
+        }
         while (results.next()) {
-            Profile p = GetProfileFromResults(results);
-            plist.add(p);
+            long PID = results.getLong(column);
+            String sql2 = "SELECT * FROM PROFILE WHERE PID = " + Long.toString(PID) + ";";
+            ResultSet rs = stmt.executeQuery(sql2);
+            while (rs.next()) {
+                Profile p = GetProfileFromResults(rs);
+                plist.add(p);
+            }
         }
 
         CloseDBConnection();
