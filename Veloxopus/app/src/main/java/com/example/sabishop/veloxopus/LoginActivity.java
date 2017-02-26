@@ -70,6 +70,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /*
+            TODO : Remove test code
+
+         */
         MySQLDatabase db = null;
         try {
             db = new MySQLDatabase();

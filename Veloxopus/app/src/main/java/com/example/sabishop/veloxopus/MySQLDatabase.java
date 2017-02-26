@@ -3,6 +3,7 @@ package com.example.sabishop.veloxopus;
 import android.os.StrictMode;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by Marc on 2/25/2017.
@@ -42,7 +43,7 @@ public class MySQLDatabase {
         connection.close();
     }
 
-    void RemoveUser(String email) throws SQLException , Exception {
+    public void RemoveUser(String email) throws SQLException , Exception {
         OpenDBConnection();
         if (1 != stmt.executeUpdate("DELETE FROM USER WHERE email='" + email + "';")) {
             throw new Exception("Failed to delete user " + email + " from database!");
@@ -50,7 +51,7 @@ public class MySQLDatabase {
         CloseDBConnection();
     }
 
-    void AddUser(String email , String name , String pword) throws SQLException , Exception {
+    public void AddUser(String email , String name , String pword) throws SQLException , Exception {
         OpenDBConnection();
         results = stmt.executeQuery("SELECT email FROM USER WHERE email='" + email + "'");
         if (results.next()) {
@@ -64,6 +65,38 @@ public class MySQLDatabase {
         CloseDBConnection();
     }
 
+    public void AddProfile(String email , String title , String category , String description , String type) throws Exception {
+        OpenDBConnection();
+        String sql = "INSERT INTO PROFILE VALUES(NULL , '" + email + "' , '" + title + "' , '" + category + "' , '" +
+                     description + "' , '" + type + "');";
 
+        if (1 != stmt.executeUpdate(sql)) {
+            throw new Exception("Failed to create profile for user " + email);
+        }
+        CloseDBConnection();
+    }
 
+    public ArrayList<Profile> GetMatchingProfiles(String user_email) throws SQLException {
+        OpenDBConnection();
+
+        String sql = "SELECT * FROM PROFILE WHERE email = '" + user_email + "';";
+        results = stmt.executeQuery(sql);
+
+        ArrayList<Profile> profiles = new ArrayList<Profile>();
+
+        while (results.next()) {
+            Profile p = new Profile(user_email);
+            p.profileID = results.getLong(1);
+            p.name = results.getString(3);
+            p.category = results.getString(4);
+            p.description = results.getString(5);
+            p.type = results.getString(6);
+
+            profiles.add(p);
+        }
+
+        CloseDBConnection();
+
+        return profiles;
+    }
 }
