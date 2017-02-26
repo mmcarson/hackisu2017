@@ -52,7 +52,6 @@ public class ProfilesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
-                // TODO: add blank profile to database and pass its id through the intent
                 intent.putExtra("isNew", true);
                 intent.putExtra("email", email);
                 startActivity(intent);
