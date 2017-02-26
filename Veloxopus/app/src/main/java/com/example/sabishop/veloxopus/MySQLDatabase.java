@@ -350,7 +350,17 @@ public class MySQLDatabase {
         CloseDBConnection();
     }
 
+    public void LogChat(ChatLog l) throws Exception {
+        OpenDBConnection();
 
+        String sql = "INSERT INTO CHAT VALUES(NULL , " + Long.toString(l.jobID) + " , " + Long.toString(l.toID) +
+                     " , " + Long.toString(l.fromID) + " , '" + l.message + "');";
+        if (1 != stmt.executeUpdate(sql)) {
+            throw new Exception("Failed to add chat message!");
+        }
+        
+        CloseDBConnection();
+    }
 
 
 
