@@ -62,8 +62,6 @@ public class CardActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: fill with info from database
-
         MySQLDatabase database = null;
         try {
             database = new MySQLDatabase();

@@ -46,7 +46,6 @@ public class DeleteProfileActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         if (view == findViewById(R.id.button_yes)){
-            //TODO: delete profile from database
             try {
                 MySQLDatabase database = new MySQLDatabase();
                 database.RemoveProfile(profileID);

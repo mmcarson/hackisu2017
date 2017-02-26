@@ -21,7 +21,6 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        //TODO: replace this with database query getting profile based on id
         long profileID;
         profileID = getIntent().getLongExtra("profileID", 0);
         if (profileID == 0){
@@ -86,7 +85,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     }
                     else{
-                        //TODO: Edit profile in database
                         try {
                             database.UpdateProfile(profileID, profile.email, profile.name, profile.category, profile.description, profile.type);
                         } catch (Exception e) {

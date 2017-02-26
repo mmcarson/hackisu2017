@@ -52,7 +52,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         else {
             // TODO: get chats from database
             conversation = new ChatConversation(chatID, me.profileID, other.profileID, new ArrayList<>());
-
+            conversation.addToChatList(new ChatLog(chatID, me.profileID, other.profileID, 0, "Do you go on walks?"));
+            conversation.addToChatList(new ChatLog(chatID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
         }
 
         fillLayout();
@@ -90,6 +91,14 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             if (message != "") {
                 conversation.addToChatList(new ChatLog(chatID, other.profileID, me.profileID, 0, message));
                 //TODO: add chat to database
+                try {
+                    MySQLDatabase database = new MySQLDatabase();
+                    database.AddChatMessage(chatID, message);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 fillLayout();
                 editText.setText("");
             }
