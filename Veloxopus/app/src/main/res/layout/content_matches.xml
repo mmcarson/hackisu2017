@@ -28,7 +28,8 @@
             android:id="@+id/textView"
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
-            android:textSize="20pt"/>
+            android:textSize="20pt"
+            android:paddingBottom="10dp"/>
     </LinearLayout>
 
 

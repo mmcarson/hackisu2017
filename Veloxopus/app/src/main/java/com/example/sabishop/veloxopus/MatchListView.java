@@ -60,7 +60,6 @@ public class MatchListView extends LinearLayout {
         nameView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: go to a detailed view of the matched profile
                 Intent intent = new Intent(getContext(), ProfileDetailActivity.class);
                 intent.putExtra("profileID", profile.profileID);
                 parent.startActivity(intent);

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
@@ -51,9 +52,16 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             // TODO: get chats from database
-            conversation = new ChatConversation(jobID, me.profileID, other.profileID, new ArrayList<>());
-            conversation.addToChatList(new ChatLog(jobID, me.profileID, other.profileID, 0, "Do you go on walks?"));
-            conversation.addToChatList(new ChatLog(jobID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
+            try {
+                MySQLDatabase database = new MySQLDatabase();
+                conversation = new ChatConversation(jobID, me.profileID, other.profileID, database.GetChatLog(jobID));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            //conversation.addToChatList(new ChatLog(jobID, me.profileID, other.profileID, 0, "Do you go on walks?"));
+            //conversation.addToChatList(new ChatLog(jobID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
         }
 
         fillLayout();
@@ -71,6 +79,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         Button sendButton = (Button)findViewById(R.id.buttonSend);
         sendButton.setOnClickListener(this);
+        Button refreshButton = (Button)findViewById(R.id.refresh_button);
+        refreshButton.setOnClickListener(this);
     }
 
     private void fillLayout() {
@@ -89,11 +99,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             EditText editText = (EditText)findViewById(R.id.editText);
             String message = editText.getText().toString();
             if (message != "") {
-                conversation.addToChatList(new ChatLog(jobID, other.profileID, me.profileID, 0, message));
+                ChatLog chatLog = new ChatLog(jobID, other.profileID, me.profileID, 0, message);
+                conversation.addToChatList(chatLog);
                 //TODO: add chat to database
                 try {
                     MySQLDatabase database = new MySQLDatabase();
-                    database.AddChatMessage(jobID, message);
+                    database.LogChat(chatLog);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
@@ -102,6 +113,17 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 fillLayout();
                 editText.setText("");
             }
+        }
+        else if (v == findViewById(R.id.refresh_button)){
+            try {
+                MySQLDatabase database = new MySQLDatabase();
+                conversation = new ChatConversation(jobID, me.profileID, other.profileID, database.GetChatLog(jobID));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            fillLayout();
         }
     }
 }

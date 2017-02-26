@@ -61,6 +61,14 @@ public class ProfileListView extends LinearLayout {
         nameView.setTypeface(Typeface.create("HELVETICA", Typeface.BOLD));
         nameView.setText(profile.type + ": " + profile.name);
         this.addView(nameView);
+        nameView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ProfileDetailActivity.class);
+                intent.putExtra("profileID", profile.profileID);
+                parent.startActivity(intent);
+            }
+        });
 
         // icons
         ImageView cards = new ImageView(context);
