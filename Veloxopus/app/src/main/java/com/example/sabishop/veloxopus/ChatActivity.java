@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Profile me, other;
-    private long chatID, meID, otherID;
+    private long jobID, meID, otherID;
     ChatConversation conversation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,32 +28,32 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             me = database.GetProfile(meID);
             other = database.GetProfile(otherID);
             if (me.type.equals("Worker")){
-                chatID = database.GetMatchingJobId(meID, otherID);
+                jobID = database.GetMatchingJobId(meID, otherID);
             }
             else {
-                chatID = database.GetMatchingJobId(otherID, meID);
+                jobID = database.GetMatchingJobId(otherID, meID);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            chatID = 0;
+            jobID = 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
         //TODO: get chats from database and delete this sample
-        if (chatID == 0){
+        if (jobID == 0){
             me = new Profile("mmcarson@gmail.com", "Pet Sitter", "Experienced with small and large dogs", "Child/Pet Care", "Worker", 0);
             other = new Profile("contactlaurac@gmail.com", "Pet Sitter", "Need sitter for Shih Tzu age 6 and Lhasa Apso age 9", "Child/Pet Care", "Job", 1);
-            conversation = new ChatConversation(chatID, me.profileID, other.profileID, new ArrayList<>());
-            conversation.addToChatList(new ChatLog(chatID, me.profileID, other.profileID, 0, "Do you go on walks?"));
-            conversation.addToChatList(new ChatLog(chatID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
+            conversation = new ChatConversation(jobID, me.profileID, other.profileID, new ArrayList<>());
+            conversation.addToChatList(new ChatLog(jobID, me.profileID, other.profileID, 0, "Do you go on walks?"));
+            conversation.addToChatList(new ChatLog(jobID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
         }
         else {
             // TODO: get chats from database
-            conversation = new ChatConversation(chatID, me.profileID, other.profileID, new ArrayList<>());
-            conversation.addToChatList(new ChatLog(chatID, me.profileID, other.profileID, 0, "Do you go on walks?"));
-            conversation.addToChatList(new ChatLog(chatID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
+            conversation = new ChatConversation(jobID, me.profileID, other.profileID, new ArrayList<>());
+            conversation.addToChatList(new ChatLog(jobID, me.profileID, other.profileID, 0, "Do you go on walks?"));
+            conversation.addToChatList(new ChatLog(jobID, other.profileID, me.profileID, 1, "Yes, absolutely!"));
         }
 
         fillLayout();
@@ -89,11 +89,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             EditText editText = (EditText)findViewById(R.id.editText);
             String message = editText.getText().toString();
             if (message != "") {
-                conversation.addToChatList(new ChatLog(chatID, other.profileID, me.profileID, 0, message));
+                conversation.addToChatList(new ChatLog(jobID, other.profileID, me.profileID, 0, message));
                 //TODO: add chat to database
                 try {
                     MySQLDatabase database = new MySQLDatabase();
-                    database.AddChatMessage(chatID, message);
+                    database.AddChatMessage(jobID, message);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (Exception e) {

@@ -21,7 +21,8 @@
         android:textSize="16pt"
         android:id="@+id/profile_names"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"/>
 
 
 

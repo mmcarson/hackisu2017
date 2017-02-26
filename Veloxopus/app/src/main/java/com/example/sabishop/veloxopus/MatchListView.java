@@ -72,7 +72,7 @@ public class MatchListView extends LinearLayout {
         chat.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: find chatID by both profileIDs, pass through the intent to chat
+                //TODO: find jobID by both profileIDs, pass through the intent to chat
                 Intent intent = new Intent(getContext(), ChatActivity.class);
                 intent.putExtra("meID", parent.profileID);
                 intent.putExtra("otherID", profile.profileID);

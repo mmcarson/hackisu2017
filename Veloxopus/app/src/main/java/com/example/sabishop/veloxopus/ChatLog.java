@@ -5,14 +5,14 @@ package com.example.sabishop.veloxopus;
  */
 
 public class ChatLog {
-    public long chatID, toID, fromID, chatOrderID;
+    public long jobID, toID, fromID, messageID;
     public String message;
 
-    public ChatLog(long chatID, long toID, long fromID, long chatOrderID, String message) {
-        this.chatID = chatID;
+    public ChatLog(long jobID, long toID, long fromID, long messageID, String message) {
+        this.jobID = jobID;
         this.toID = toID;
         this.fromID = fromID;
-        this.chatOrderID = chatOrderID;
+        this.messageID = messageID;
         this.message = message;
     }
 }
