@@ -268,4 +268,24 @@ public class MySQLDatabase {
 
         return ret;
     }
+
+    public ArrayList<Profile> GetMatchedJobs(long ProfileID , String job_type) throws SQLException {
+
+        ArrayList<Profile> plist = new ArrayList<Profile>();
+
+        OpenDBConnection();
+
+        String sql = "SELECT * FROM PROFILE WHERE PID = " + Long.toString(ProfileID) + ";";
+
+        results = stmt.executeQuery(sql);
+
+        while (results.next()) {
+            Profile p = GetProfileFromResults(results);
+            plist.add(p);
+        }
+
+        CloseDBConnection();
+
+        return plist;
+    }
 }
