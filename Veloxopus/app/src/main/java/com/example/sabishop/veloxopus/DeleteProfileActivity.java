@@ -11,14 +11,27 @@ import android.widget.Toast;
 public class DeleteProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     String email;
+    long profileID;
+    Profile profile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_profile);
         email = getIntent().getStringExtra("email");
+        profileID = getIntent().getLongExtra("profileID",0);
 
-        //TODO: fill with info from database
-        Profile profile = new Profile("contactlaurac@gmail.com", "Pet Sitter", "Need sitter for Shih Tzu age 6 and Lhasa Apso age 9", "Child/Pet Care", "Job", 1);
+        try {
+            MySQLDatabase database = new MySQLDatabase();
+            profile = database.GetProfile(profileID);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            profile = new Profile("contactlaurac@gmail.com", "Pet Sitter", "Need sitter for Shih Tzu age 6 and Lhasa Apso age 9", "Child/Pet Care", "Job", 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         TextView nameView = (TextView)findViewById(R.id.textViewName);
         nameView.setText(profile.name);
         TextView descriptionView = (TextView)findViewById(R.id.textViewDescription);
@@ -34,7 +47,13 @@ public class DeleteProfileActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         if (view == findViewById(R.id.button_yes)){
             //TODO: delete profile from database
-            Toast.makeText(getApplicationContext(), "Profile deleted", Toast.LENGTH_LONG).show();
+            try {
+                MySQLDatabase database = new MySQLDatabase();
+                //database.
+                Toast.makeText(getApplicationContext(), "Profile deleted", Toast.LENGTH_LONG).show();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
         intent.putExtra("email", email);

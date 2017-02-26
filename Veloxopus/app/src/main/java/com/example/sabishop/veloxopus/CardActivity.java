@@ -20,7 +20,7 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: make like
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with like action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -30,7 +30,7 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: make dislike
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with dislike action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
