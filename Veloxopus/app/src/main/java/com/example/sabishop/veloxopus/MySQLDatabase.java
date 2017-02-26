@@ -297,4 +297,29 @@ public class MySQLDatabase {
 
         return plist;
     }
+
+    public void AddChatMessage(long JobID , String message) throws Exception {
+        OpenDBConnection();
+
+        String sql = "SELECT WPID , EPID FROM ACCEPTED WHERE JID = " + Long.toString(JobID) + ";";
+
+        results = stmt.executeQuery(sql);
+
+        if (results.next()) {
+            String WPID = Long.toString(results.getLong(1));
+            String EPID = Long.toString(results.getLong(2));
+            String sql2 = "INSERT INTO CHAT VALUES(NULL , " + Long.toString(JobID) + " , " + WPID + " , " + EPID + " , '" +
+                            message + "');";
+            if (1 != stmt.executeUpdate(sql)) {
+                throw new Exception("Failed to add chat message!");
+            }
+        }
+        else {
+            throw new Exception("Failed to retrieve IDs from JobID");
+        }
+
+        CloseDBConnection();
+    }
+
+
 }
