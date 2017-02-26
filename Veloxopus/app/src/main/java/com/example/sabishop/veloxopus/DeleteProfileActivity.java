@@ -49,9 +49,11 @@ public class DeleteProfileActivity extends AppCompatActivity implements View.OnC
             //TODO: delete profile from database
             try {
                 MySQLDatabase database = new MySQLDatabase();
-                //database.
+                database.RemoveProfile(profileID);
                 Toast.makeText(getApplicationContext(), "Profile deleted", Toast.LENGTH_LONG).show();
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

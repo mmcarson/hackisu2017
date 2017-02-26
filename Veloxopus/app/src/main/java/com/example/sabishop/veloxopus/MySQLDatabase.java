@@ -139,7 +139,7 @@ public class MySQLDatabase {
     public void RemoveProfile(long PID) throws Exception {
         OpenDBConnection();
 
-        String sql = "DELETE * FROM PROFILE WHERE PID = " + Long.toString(PID);
+        String sql = "DELETE FROM PROFILE WHERE PID = " + Long.toString(PID) + ";";
 
         int ret = stmt.executeUpdate(sql);
         if (ret != 1) {
