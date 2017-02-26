@@ -27,7 +27,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             MySQLDatabase database = new MySQLDatabase();
             me = database.GetProfile(meID);
             other = database.GetProfile(otherID);
-            if (me.type == "Worker"){
+            if (me.type.equals("Worker")){
                 chatID = database.GetMatchingJobId(meID, otherID);
             }
             else {
@@ -51,13 +51,14 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             // TODO: get chats from database
+            conversation = new ChatConversation(chatID, me.profileID, other.profileID, new ArrayList<>());
 
         }
 
         fillLayout();
 
         String middleOfTitle;
-        if (me.type == "Job"){
+        if (me.type.equals("Worker")){
             middleOfTitle = " working for ";
         }
         else {

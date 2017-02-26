@@ -41,6 +41,7 @@ public class ChatConversation {
 
     public void addToChatList(ChatLog chat){
         chatList.add(chat);
+
     }
 
     public ChatConversation(long chatID, long workerID, long jobID, ArrayList<ChatLog> chatList) {
