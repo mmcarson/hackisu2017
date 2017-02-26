@@ -13,14 +13,34 @@ import java.util.ArrayList;
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Profile me, other;
-    private long chatID;
+    private long chatID, meID, otherID;
     ChatConversation conversation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        chatID = getIntent().getLongExtra("chatID",0);
+        meID = getIntent().getLongExtra("meID",0);
+        otherID = getIntent().getLongExtra("otherID",0);
+
+        try {
+            MySQLDatabase database = new MySQLDatabase();
+            me = database.GetProfile(meID);
+            other = database.GetProfile(otherID);
+            if (me.type == "Worker"){
+                chatID = database.GetMatchingJobId(meID, otherID);
+            }
+            else {
+                chatID = database.GetMatchingJobId(otherID, meID);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            chatID = 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         //TODO: get chats from database and delete this sample
         if (chatID == 0){
             me = new Profile("mmcarson@gmail.com", "Pet Sitter", "Experienced with small and large dogs", "Child/Pet Care", "Worker", 0);
@@ -31,6 +51,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         }
         else {
             // TODO: get chats from database
+
         }
 
         fillLayout();

@@ -12,12 +12,13 @@ import java.util.ArrayList;
 
 public class MatchesActivity extends AppCompatActivity {
 
+    long profileID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
 
-        long profileID = getIntent().getLongExtra("profileID",0);
+        profileID = getIntent().getLongExtra("profileID",0);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -34,10 +35,12 @@ public class MatchesActivity extends AppCompatActivity {
         //TODO: fill array list with matches
         try {
             MySQLDatabase database = new MySQLDatabase();
-            profiles = database.GetAllProfiles();
+            profiles = database.GetMatchedJobs(profileID, database.GetProfile(profileID).type);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

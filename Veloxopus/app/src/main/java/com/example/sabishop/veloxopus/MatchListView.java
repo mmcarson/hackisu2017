@@ -29,7 +29,7 @@ public class MatchListView extends LinearLayout {
     Profile profile;
     Activity parent;
 
-    public MatchListView(Context context, final Profile profile, final Activity parent) {
+    public MatchListView(Context context, final Profile profile, final MatchesActivity parent) {
         super(context);
         setOrientation(HORIZONTAL);
         this.context = context;
@@ -74,6 +74,8 @@ public class MatchListView extends LinearLayout {
             public void onClick(View v) {
                 //TODO: find chatID by both profileIDs, pass through the intent to chat
                 Intent intent = new Intent(getContext(), ChatActivity.class);
+                intent.putExtra("meID", parent.profileID);
+                intent.putExtra("otherID", profile.profileID);
                 parent.startActivity(intent);
             }
         });

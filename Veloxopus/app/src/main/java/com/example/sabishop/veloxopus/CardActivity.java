@@ -58,9 +58,6 @@ public class CardActivity extends AppCompatActivity {
         fabDislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: make dislike
-                Snackbar.make(view, "Replace with dislike action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 nextView();
             }
         });
