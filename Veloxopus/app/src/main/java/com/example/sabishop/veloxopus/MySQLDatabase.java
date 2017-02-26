@@ -45,7 +45,7 @@ public class MySQLDatabase {
 
     public void RemoveUser(String email) throws SQLException , Exception {
         OpenDBConnection();
-        if (1 != stmt.executeUpdate("DELETE FROM USER WHERE email='" + email + "';")) {
+        if (1 != stmt.executeUpdate("DELETE FROM USER WHERE Email='" + email + "';")) {
             throw new Exception("Failed to delete user " + email + " from database!");
         }
         CloseDBConnection();
@@ -53,7 +53,7 @@ public class MySQLDatabase {
 
     public void AddUser(String email , String name , String pword) throws SQLException , Exception {
         OpenDBConnection();
-        results = stmt.executeQuery("SELECT email FROM USER WHERE email='" + email + "'");
+        results = stmt.executeQuery("SELECT * FROM USER WHERE Email='" + email + "'");
         if (results.next()) {
             throw new Exception("User already in database!");
         }
@@ -111,7 +111,7 @@ public class MySQLDatabase {
     public ArrayList<Profile> GetProfiles(String user_email) throws SQLException {
         OpenDBConnection();
 
-        String sql = "SELECT * FROM PROFILE WHERE email = '" + user_email + "';";
+        String sql = "SELECT * FROM PROFILE WHERE Email = '" + user_email + "';";
         results = stmt.executeQuery(sql);
 
         ArrayList<Profile> profiles = new ArrayList<Profile>();
@@ -176,7 +176,7 @@ public class MySQLDatabase {
 
         OpenDBConnection();
 
-        String sql = "SELECT * FROM USER WHERE email = " + userEmail + ";";
+        String sql = "SELECT * FROM USER WHERE Email = '" + userEmail + "';";
 
         results = stmt.executeQuery(sql);
 
@@ -196,5 +196,57 @@ public class MySQLDatabase {
 
         return valid;
     }
+
+    enum OFFER_ACCEPTANCE_TYPE {
+        WORKER_ACCEPTS ,
+        EMPLOYER_ACCEPTS
+    }
+
+    /**
+        Returns true if the offer acceptance indicates a match between employer and employee
+    //*/
+    public boolean AcceptOffer(long WorkerProfileID , long EmployeeProfileID , OFFER_ACCEPTANCE_TYPE type) throws Exception {
+
+        boolean ret = false;
+
+        OpenDBConnection();
+
+        String sql = "SELECT * FROM ACCEPTED WHERE WPID = " + Long.toString(WorkerProfileID) + " AND EPID = " +
+                    Long.toString(EmployeeProfileID) + ";";
+        results = stmt.executeQuery(sql);
+
+        /* TODO : Count actual number of rows returned. It should be 1, but there may be an error in the database */
+        if (results.next()) {
+            /// Need to check if the offer has made a match
+            long JID = results.getLong(1);
+            boolean worker_accepts = (results.getInt(4) == 1);
+            boolean employer_accepts = (results.getInt(5) == 1);
+            if (((OFFER_ACCEPTANCE_TYPE.WORKER_ACCEPTS == type) && employer_accepts) ||
+                ((OFFER_ACCEPTANCE_TYPE.EMPLOYER_ACCEPTS == type) && worker_accepts)) {
+                /// Made a match, update the database to reflect the match
+                sql = "UPDATE ACCEPTED SET WACCEPT = 1 , EACCEPT = 1 WHERE JID = '" +
+                             Long.toString(JID) + "';";
+                if (1 != stmt.executeUpdate(sql)) {
+                    throw new Exception("Failed to update match on ACCEPTED table with JID = " + Long.toString(JID));
+                }
+                ret = true;
+            }
+        }
+        else {
+            /// Need to add new entry to ACCEPTED table
+            String worker_accepts = (type == OFFER_ACCEPTANCE_TYPE.WORKER_ACCEPTS)?"1":"0";
+            String employer_accepts = (type == OFFER_ACCEPTANCE_TYPE.EMPLOYER_ACCEPTS)?"1":"0";
+            sql = "INSERT INTO ACCEPTED VALUES(NULL , " + Long.toString(WorkerProfileID) + " , " + Long.toString(EmployeeProfileID) +
+                    " , " + worker_accepts + " , " + employer_accepts + ");";
+            if (1 != stmt.executeUpdate(sql)) {
+                throw new Exception("Failed to insert new offer into ACCEPTED table!");
+            }
+        }
+
+        CloseDBConnection();
+
+        return ret;
+    }
+
 
 }
