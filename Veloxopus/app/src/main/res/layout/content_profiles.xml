@@ -18,6 +18,7 @@
         android:layout_height="match_parent"
         android:id="@+id/profiles_list"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         >
 
         <TextView

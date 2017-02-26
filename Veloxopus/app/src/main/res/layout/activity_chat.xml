@@ -69,6 +69,6 @@
             android:layout_alignTop="@+id/editText"
             android:layout_alignBottom="@+id/editText"
             android:padding="8dp"
-            android:backgroundTint="@color/colorAccent" />
+            android:backgroundTint="@android:color/holo_blue_bright" />
     </LinearLayout>
 </RelativeLayout>
