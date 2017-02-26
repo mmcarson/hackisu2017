@@ -113,7 +113,10 @@ public class ProfileListView extends LinearLayout {
         close.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                Intent intent = new Intent(getContext(), DeleteProfileActivity.class);
+                intent.putExtra("email",profile.email);
+                intent.putExtra("profileID",profile.profileID);
+                parent.startActivity(intent);
             }
         });
         close.setMaxHeight(screenHeight/6);
