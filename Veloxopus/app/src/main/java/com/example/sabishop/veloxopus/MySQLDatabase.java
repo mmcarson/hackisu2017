@@ -136,6 +136,48 @@ public class MySQLDatabase {
         return p;
     }
 
+    public void RemoveProfile(long PID) throws Exception {
+        OpenDBConnection();
 
+        String sql = "DELETE * FROM PROFILE WHERE PID = " + Long.toString(PID);
+
+        int ret = stmt.executeUpdate(sql);
+        if (ret != 1) {
+            if (ret > 1) {
+                throw new Exception("WARNING : Removed multiple profiles!!!");
+            }
+            else {
+                throw new Exception("Failed to remove PID " + Long.toString(PID));
+            }
+        }
+
+        CloseDBConnection();
+    }
+
+    public boolean VerifyUser(String userEmail , String password) throws SQLException {
+        boolean valid = false;
+
+        OpenDBConnection();
+
+        String sql = "SELECT * FROM USER WHERE email = " + userEmail + ";";
+
+        results = stmt.executeQuery(sql);
+
+        if (!results.next())
+        {
+            valid = false;
+        }
+        else
+        {
+            if (results.getString(3).equals(password))
+            {
+                valid = true;
+            }
+        }
+
+        CloseDBConnection();
+
+        return valid;
+    }
 
 }
