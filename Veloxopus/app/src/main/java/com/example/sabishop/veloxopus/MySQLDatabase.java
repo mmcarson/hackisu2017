@@ -13,6 +13,7 @@ public class MySQLDatabase {
 
     protected Connection connection;
     protected Statement stmt;
+    protected Statement stmt2;
     protected ResultSet results;
 
     MySQLDatabase() throws ClassNotFoundException {
@@ -37,6 +38,7 @@ public class MySQLDatabase {
 
         System.out.println("Connected to database.");
         stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        stmt2 = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         System.out.println("Created statement.");
     }
     protected void CloseDBConnection() throws SQLException {
@@ -286,7 +288,7 @@ public class MySQLDatabase {
         while (results.next()) {
             long PID = results.getLong(column);
             String sql2 = "SELECT * FROM PROFILE WHERE PID = " + Long.toString(PID) + ";";
-            ResultSet rs = stmt.executeQuery(sql2);
+            ResultSet rs = stmt2.executeQuery(sql2);
             while (rs.next()) {
                 Profile p = GetProfileFromResults(rs);
                 plist.add(p);
