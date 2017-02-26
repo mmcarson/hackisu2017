@@ -30,25 +30,28 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:textSize="20pt"
-                android:text="@string/welcome_to_veloxopus"/>
+                android:text="@string/welcome_to_veloxopus"
+                android:gravity="center_horizontal"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorLightPurple"
+                android:gravity="center_horizontal"
                 android:text="@string/login_to_connect_with_jobs_or_workers_fast"/>
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/veloxopus_fred"
+                android:layout_width="200dp"
+                android:layout_height="230dp"
+                android:src="@drawable/veloxopus_fred"
                 />
 
             <android.support.design.widget.TextInputLayout
