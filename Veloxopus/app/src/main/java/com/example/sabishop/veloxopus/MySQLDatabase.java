@@ -278,6 +278,32 @@ public class MySQLDatabase {
         OpenDBConnection();
 
         /// Fetch all jobs that have been accepted
+        String column = "";
+        int colnum = -1;
+        if (job_type.equals("Job")) {
+            column = "WPID";
+            colnum = 2;
+        }
+        else {
+            column = "EPID";
+            colnum = 3;
+        }
+
+        String sql = "SELECT * FROM ACCEPTED WHERE " + column + " = " + Long.toString(ProfileID) + " AND " +
+                    "WAccept = 1 AND EAccept = 1";
+        results = stmt.executeQuery(sql);
+
+        while (results.next()) {
+            String PID = Long.toString(results.getLong(colnum));
+            String sql2 = "SELECT * FROM PROFILE WHERE PID = " + PID + ";";
+            ResultSet rs = stmt2.executeQuery(sql2);
+            while (rs.next()) {
+                Profile p = GetProfileFromResults(rs);
+                plist.add(p);
+            }
+        }
+
+        /*
         String sql = "SELECT * FROM ACCEPTED WHERE WAccept = 1 AND EAccept = 1";
         results = stmt.executeQuery(sql);
 
@@ -294,6 +320,7 @@ public class MySQLDatabase {
                 plist.add(p);
             }
         }
+*/
 
         CloseDBConnection();
 
