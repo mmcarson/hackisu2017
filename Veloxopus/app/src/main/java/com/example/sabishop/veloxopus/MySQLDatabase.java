@@ -358,10 +358,29 @@ public class MySQLDatabase {
         if (1 != stmt.executeUpdate(sql)) {
             throw new Exception("Failed to add chat message!");
         }
-        
+
         CloseDBConnection();
     }
 
+    public ArrayList<ChatLog> GetChatLog(long JobID) throws SQLException {
 
+        ArrayList<ChatLog> clist = new ArrayList<ChatLog>();
+
+        OpenDBConnection();
+
+        String sql = "SELECT * FROM CHAT WHERE JID = " + Long.toString(JobID) + ";";
+
+        results = stmt.executeQuery(sql);
+
+        while (results.next()) {
+            ChatLog c = new ChatLog(results.getLong(2) , results.getLong(3) ,
+                                    results.getLong(4) , results.getLong(1) , results.getString(5));
+            clist.add(c);
+        }
+
+        CloseDBConnection();
+
+        return clist;
+    }
 
 }
