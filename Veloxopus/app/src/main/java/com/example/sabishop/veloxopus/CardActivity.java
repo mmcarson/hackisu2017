@@ -29,9 +29,27 @@ public class CardActivity extends AppCompatActivity {
         fabLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: make like
-                Snackbar.make(view, "Replace with like action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                try {
+                    MySQLDatabase database = new MySQLDatabase();
+                    Profile employer, worker, other = profiles.get(profileNumber);
+                    MySQLDatabase.OFFER_ACCEPTANCE_TYPE offer_acceptance_type;
+                    if (profile.type == "Worker"){
+                        worker = profile;
+                        employer = other;
+                        offer_acceptance_type = MySQLDatabase.OFFER_ACCEPTANCE_TYPE.WORKER_ACCEPTS;
+                    }
+                    else {
+                        worker = other;
+                        employer = profile;
+                        offer_acceptance_type = MySQLDatabase.OFFER_ACCEPTANCE_TYPE.EMPLOYER_ACCEPTS;
+                    }
+                    database.AcceptOffer(worker.profileID, employer.profileID, offer_acceptance_type);
+
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 nextView();
             }
         });
