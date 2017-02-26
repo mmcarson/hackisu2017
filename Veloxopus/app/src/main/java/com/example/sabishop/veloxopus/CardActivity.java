@@ -31,7 +31,7 @@ public class CardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     MySQLDatabase database = new MySQLDatabase();
-                    Profile employer, worker, other = profiles.get(profileNumber);
+                    Profile employer, worker, other = profiles.get(profileNumber%profiles.size());
                     MySQLDatabase.OFFER_ACCEPTANCE_TYPE offer_acceptance_type;
                     if (profile.type == "Worker"){
                         worker = profile;
