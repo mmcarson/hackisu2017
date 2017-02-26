@@ -67,6 +67,8 @@ public class ProfileListView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 //TODO
+                Intent intent = new Intent(context, CardActivity.class);
+                parent.startActivity(intent);
             }
         });
         cards.setMaxHeight(screenHeight/6);

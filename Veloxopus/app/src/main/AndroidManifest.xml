@@ -43,6 +43,10 @@
             android:name=".MatchesActivity"
             android:label="Matches"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CardActivity"
+            android:label="@string/title_activity_card"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

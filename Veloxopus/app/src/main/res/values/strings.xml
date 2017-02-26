@@ -112,4 +112,5 @@
         <item>I am a worker</item>
         <item>I need a worker</item>
     </string-array>
+    <string name="title_activity_card">CardActivity</string>
 </resources>

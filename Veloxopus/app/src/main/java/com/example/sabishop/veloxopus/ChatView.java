@@ -55,6 +55,7 @@ public class ChatView extends LinearLayout {
         screenHeight = size.y;
         //lp.height = screenHeight/6;
         lp.width = screenWidth;
+        setPadding(10,10,10,10);
     }
 
     private void formatToMe() {
