@@ -56,7 +56,6 @@
                 android:id="@+id/password"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
@@ -64,7 +63,8 @@
                 android:maxLines="1"
                 android:background="@color/colorWhite"
                 android:singleLine="true"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:hint="Password" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -81,11 +81,11 @@
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:inputType="textPersonName"
-            android:text="Name"
             android:ems="10"
             android:id="@+id/editTextName"
             android:background="@color/colorWhite"
-            android:layout_margin="7pt"/>
+            android:layout_margin="7pt"
+            android:hint="Name" />
 
         <Button
             android:text="Create Account"
