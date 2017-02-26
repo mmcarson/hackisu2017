@@ -41,6 +41,8 @@ public class CardActivity extends AppCompatActivity {
         nameView.setText(profile.name);
         TextView descriptionView = (TextView)findViewById(R.id.textViewDescription);
         descriptionView.setText(profile.description);
+        TextView categoryView = (TextView)findViewById(R.id.textViewTitle);
+        categoryView.setText(profile.category);
 
     }
 
